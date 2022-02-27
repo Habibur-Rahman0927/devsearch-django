@@ -46,7 +46,7 @@ def loginPage(request):
 
 def logoutUser(request):
     logout(request)
-    messages.error(request, 'User was successFully Logout')
+    messages.info(request, 'User was successFully Logout')
     return redirect('login')
 
 
