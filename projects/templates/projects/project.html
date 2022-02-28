@@ -1,28 +1,6 @@
 {% extends 'main.html' %}
 
 {% block content %}
-
-<hr>
-<table>
-    <tr>
-        <th>Project</th>
-        <th>Positive Votes</th>
-        <th>Votes</th>
-        <th></th>
-        <th></th>
-    </tr>
-    {% for project in projects %}
-    <tr>
-        <td><a href="{% url 'single-projects' project.id %}">View</a></td>
-        <td><a href="{% url 'update-project' project.id %}">Update</a></td>
-        <td><a href="{% url 'delete-project' project.id %}?next=/account">Delete</a></td>
-    </tr>
-    {% endfor %}
-</table>
-<hr>
-
-
-
 <main class="projects">
     <section class="hero-section text-center">
       <div class="container container--narrow">
