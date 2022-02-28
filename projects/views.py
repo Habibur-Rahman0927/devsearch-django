@@ -3,35 +3,15 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .models import Project, Tag
 from .forms import ProjectForm
-from .utils import searchProject
+from .utils import searchProject, paginationProject
 # Create your views here.
 
 
 def projects(request):
     projects, search_query = searchProject(request)
-    page = request.GET.get('page')
-    result = 3
-    paginator = Paginator(projects, result)
+    custom_range, projects = paginationProject(request, projects, 6)
 
-    try:
-        projects = paginator.page(page)
-    except PageNotAnInteger:
-        page = 1
-        projects = paginator.page(page)
-    except EmptyPage:
-        page = paginator.num_pages
-        projects = paginator.page(page)
-    
-    leftIndex = (int(page) - 4)
-    if leftIndex < 1:
-        leftIndex = 1
-    rightIndex = (int(page) + 5)
-    if rightIndex > paginator.num_pages:
-        rightIndex  = paginator.num_pages + 1
-
-    custom_range = range(leftIndex, rightIndex)
-
-    context = {'projects': projects, 'search_query': search_query, 'paginator': paginator, 'custom_range': custom_range}
+    context = {'projects': projects, 'search_query': search_query, 'custom_range': custom_range}
     return render(request, 'projects/project.html', context)
 
 
