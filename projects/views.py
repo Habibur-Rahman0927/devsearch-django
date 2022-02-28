@@ -49,6 +49,7 @@ def deleteProject(request, pk):
     project = profile.project_set.get(id=pk)
     if request.method == 'POST':
         project.delete()
+        messages.success(request, 'Project is deleted successfully!')
         return redirect('projects')
     
     context = {'object': project}
