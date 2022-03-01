@@ -5,7 +5,7 @@
 *  - pip install virtualenv
 *  - virtualenv envname
 *  - envname\scripts\activate
-* 3 - cd into project "cd devsearch"
+* 3 - cd into project "cd devsearch-django"
 * 4 - pip install -r requirements.txt
 * 5 - python manage.py runserver
 
